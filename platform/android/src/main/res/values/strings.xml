@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="zapret_service_channel">zapret VPN</string>
+  <string name="zapret_service_notification_title">zapret-ui</string>
+  <string name="zapret_service_notification_text">VPN is active</string>
+</resources>
+

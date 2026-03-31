@@ -106,13 +106,14 @@ class _StatusPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.18),
+        color: Colors.white.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(label, style: const TextStyle(color: Colors.white)),
     );
   }
 }
+
 
 class _BannerCard extends StatelessWidget {
   const _BannerCard({

@@ -77,7 +77,7 @@ class _ZapretAppState extends State<ZapretApp> {
       useMaterial3: true,
       scaffoldBackgroundColor:
           brightness == Brightness.dark ? const Color(0xFF09121A) : const Color(0xFFF4F7F8),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 0,
         color: brightness == Brightness.dark ? const Color(0xFF11212C) : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),

@@ -7,6 +7,7 @@ import com.me.zapret.android.core.FlowKey
 import com.me.zapret.android.core.Protocol
 import java.net.InetSocketAddress
 import java.net.Socket
+import javax.net.ssl.SSLSocket
 import javax.net.ssl.SSLSocketFactory
 
 data class SelfTestProbe(
@@ -59,7 +60,7 @@ class ProtectedSelfTestRunner(
         socket.connect(InetSocketAddress(probe.host, probe.port), 5_000)
         if (probe.useTls) {
             val sslSocket = (SSLSocketFactory.getDefault() as SSLSocketFactory)
-                .createSocket(socket, probe.host, probe.port, true)
+                .createSocket(socket, probe.host, probe.port, true) as SSLSocket
             sslSocket.startHandshake()
             sslSocket.close()
         } else {

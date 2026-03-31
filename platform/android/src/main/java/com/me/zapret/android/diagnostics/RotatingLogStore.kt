@@ -21,7 +21,7 @@ class RotatingLogStore(
     }
 
     fun listFiles(): List<File> =
-        logDir.listFiles()?.sortedByDescending(File::name).orEmpty()
+        logDir.listFiles()?.sortedByDescending { file -> file.name }.orEmpty()
 
     private fun currentFile(): File = File(logDir, "current.log")
 

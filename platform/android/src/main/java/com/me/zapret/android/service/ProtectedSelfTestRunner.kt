@@ -35,12 +35,12 @@ class ProtectedSelfTestRunner(
         val decision = coreBridge.inspectEarlyBytes(
             engineHandle = engineHandle,
             flowKey = FlowKey(
-                proto: Protocol.TCP,
-                srcIp: "10.0.0.2",
-                srcPort: 0,
-                dstIp: probe.host,
-                dstPort: probe.port,
-                direction: com.me.zapret.android.core.Direction.OUTBOUND,
+                proto = Protocol.TCP,
+                srcIp = "10.0.0.2",
+                srcPort = 0,
+                dstIp = probe.host,
+                dstPort = probe.port,
+                direction = com.me.zapret.android.core.Direction.OUTBOUND,
             ),
             bufferedBytes = "HEAD / HTTP/1.1\r\nHost: ${probe.host}\r\n\r\n".encodeToByteArray(),
             nowMs = start,
@@ -58,7 +58,7 @@ class ProtectedSelfTestRunner(
         vpnService.protect(socket)
         socket.connect(InetSocketAddress(probe.host, probe.port), 5_000)
         if (probe.useTls) {
-            val sslSocket = SSLSocketFactory.getDefault()
+            val sslSocket = (SSLSocketFactory.getDefault() as SSLSocketFactory)
                 .createSocket(socket, probe.host, probe.port, true)
             sslSocket.startHandshake()
             sslSocket.close()

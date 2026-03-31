@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.me.zapret.android"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26

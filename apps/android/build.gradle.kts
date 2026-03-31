@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.me.zapret.host"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.me.zapret.host"
@@ -38,4 +38,3 @@ dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("com.google.android.material:material:1.12.0")
 }
-

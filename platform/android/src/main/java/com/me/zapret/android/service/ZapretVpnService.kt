@@ -43,7 +43,7 @@ class ZapretVpnService : VpnService() {
         super.onDestroy()
     }
 
-    protected open fun createCoreBridge(): CoreBridge = CoreBridge(NoopNativeBindings())
+    protected fun createCoreBridge(): CoreBridge = CoreBridge(NoopNativeBindings())
 
     private fun startVpn(configJson: String) {
         if (configJson.isBlank()) {

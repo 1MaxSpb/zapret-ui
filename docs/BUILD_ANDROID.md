@@ -6,6 +6,13 @@ The Android MVP is composed from two pieces:
 - Flutter UI package in `apps/zapret_ui`
 - Kotlin VPN adapter library in `platform/android`
 
+## What to run
+
+- Launchable Android module: `:apps:android`
+- Library-only Android module: `:platform:android`
+
+`:platform:android` packages the VPN adapter and supporting Android code, but it is not a runnable app module. For Android Studio Run/Debug and for APK installation, use `:apps:android`.
+
 The adapter expects the Rust library to be built for:
 
 - `arm64-v8a`
@@ -18,6 +25,14 @@ Recommended build pipeline:
 3. Build `:platform:android` for library validation.
 4. Build and run `:apps:android` for manual Android debugging in Android Studio.
 5. Build the Flutter APK embedding the Android adapter.
-4. Sign the APK and keep the Ed25519 public key embedded for update verification.
+6. Sign the APK and keep the Ed25519 public key embedded for update verification.
+
+## Commands
+
+- Build host app debug APK: `gradle :apps:android:assembleDebug`
+- Install host app debug APK: `gradle :apps:android:installDebug`
+- Build Android library only: `gradle :platform:android:assemble`
+
+Open the project from the repository root, the directory containing `settings.gradle.kts`.
 
 Local toolchains are intentionally decoupled so the repo can evolve before the full mobile build environment is installed.

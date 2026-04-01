@@ -56,15 +56,20 @@ class ProtectedSelfTestRunner(
             )
         }
         val socket = Socket()
-        vpnService.protect(socket)
-        socket.connect(InetSocketAddress(probe.host, probe.port), 5_000)
-        if (probe.useTls) {
-            val sslSocket = (SSLSocketFactory.getDefault() as SSLSocketFactory)
-                .createSocket(socket, probe.host, probe.port, true) as SSLSocket
-            sslSocket.startHandshake()
-            sslSocket.close()
-        } else {
-            socket.close()
+        try {
+            vpnService.protect(socket)
+            socket.connect(InetSocketAddress(probe.host, probe.port), 5_000)
+            if (probe.useTls) {
+                val sslSocket = (SSLSocketFactory.getDefault() as SSLSocketFactory)
+                    .createSocket(socket, probe.host, probe.port, true) as SSLSocket
+                sslSocket.use { ssl ->
+                    ssl.startHandshake()
+                }
+            }
+        } finally {
+            if (!socket.isClosed) {
+                socket.close()
+            }
         }
         return SelfTestProbeResult(
             target = "${probe.host}:${probe.port}",
